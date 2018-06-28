@@ -50,4 +50,9 @@
  */
 @property (nonatomic, assign) CGFloat backgroundShadeAlpha;
 
+/**
+ Inset with SafeArea started from iOS 11.
+ */
+@property (nonatomic) BOOL useSafeArea;
+
 @end

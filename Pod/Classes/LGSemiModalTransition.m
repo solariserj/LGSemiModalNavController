@@ -11,6 +11,8 @@
 
 @interface LGSemiModalTransition ()
 
+@property (nonatomic) CGFloat bottomPadding;
+
 @end
 
 @implementation LGSemiModalTransition
@@ -24,7 +26,7 @@
     UIViewController* fromViewController = [transitionContext viewControllerForKey:UITransitionContextFromViewControllerKey];
     UIViewController* toViewController = (UIViewController*)[transitionContext viewControllerForKey:UITransitionContextToViewControllerKey];
     
-    CGRect modalViewFinalFrame = CGRectMake(0, transitionContext.containerView.frame.size.height - toViewController.view.frame.size.height, toViewController.view.frame.size.width, toViewController.view.frame.size.height);
+    CGRect modalViewFinalFrame = CGRectMake(0, transitionContext.containerView.frame.size.height - toViewController.view.frame.size.height - self.bottomPadding, toViewController.view.frame.size.width, toViewController.view.frame.size.height);
     CGRect modalViewInitialFrame = modalViewFinalFrame;
     modalViewInitialFrame.origin.y = transitionContext.containerView.frame.size.height;
     
@@ -104,6 +106,17 @@
     image = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return image;
+}
+
+- (CGFloat) bottomPadding {
+    CGFloat padding = 0;
+    if (_useSafeArea) {
+        if (@available(iOS 11.0, *)) {
+            UIWindow *window = UIApplication.sharedApplication.keyWindow;
+            padding = window.safeAreaInsets.bottom;
+        }
+    }
+    return padding;
 }
 
 @end

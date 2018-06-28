@@ -34,6 +34,7 @@
     _springDamping = 0.88;
     _springVelocity = 14;
     _backgroundShadeAlpha = 0.4;
+    _useSafeArea = NO;
 }
 
 #pragma mark - Actions
@@ -64,6 +65,7 @@
     animator.springDamping = _springDamping;
     animator.springVelocity = _springVelocity;
     animator.backgroundShadeAlpha = _backgroundShadeAlpha;
+    animator.useSafeArea = _useSafeArea;
     return animator;
 }
 
